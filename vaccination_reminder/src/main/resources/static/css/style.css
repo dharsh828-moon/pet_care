@@ -1,0 +1,386 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    color: #222;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* LOGIN */
+
+#loginPage {
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-box {
+    width: 350px;
+
+    background: white;
+
+    border: 1px solid #ccc;
+
+    padding: 30px;
+
+    text-align: center;
+}
+
+.login-box h1 {
+    color: #245b35;
+}
+
+.login-box label {
+    display: block;
+
+    text-align: left;
+
+    margin-top: 20px;
+
+    font-weight: bold;
+}
+
+.login-box select {
+    width: 100%;
+
+    padding: 10px;
+
+    margin-top: 5px;
+}
+
+.login-box button {
+    width: 100%;
+
+    margin-top: 20px;
+
+    padding: 10px;
+
+    background: #245b35;
+
+    color: white;
+
+    border: none;
+
+    cursor: pointer;
+}
+
+
+/* HEADER */
+
+header {
+    background: white;
+
+    border-bottom: 1px solid #ccc;
+
+    padding: 15px 25px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+
+    color: #245b35;
+
+    font-size: 23px;
+}
+
+header button {
+    background: #a00000;
+
+    color: white;
+
+    border: none;
+
+    padding: 7px 12px;
+
+    cursor: pointer;
+}
+
+
+/* NAVIGATION */
+
+nav {
+    background: #245b35;
+
+    padding: 8px;
+
+    display: flex;
+
+    gap: 5px;
+
+    flex-wrap: wrap;
+}
+
+nav button {
+    background: transparent;
+
+    color: white;
+
+    border: none;
+
+    padding: 9px 15px;
+
+    cursor: pointer;
+}
+
+nav button:hover {
+    background: #174326;
+}
+
+
+/* MAIN */
+
+main {
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 25px;
+}
+
+.page {
+    background: white;
+
+    padding: 25px;
+
+    border: 1px solid #ccc;
+}
+
+.page h2 {
+    color: #245b35;
+
+    margin-top: 0;
+}
+
+
+/* DASHBOARD */
+
+.boxes {
+    display: flex;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+    margin-top: 25px;
+}
+
+.boxes div {
+    border: 1px solid #ccc;
+
+    background: #fafafa;
+
+    padding: 20px;
+
+    min-width: 170px;
+
+    text-align: center;
+}
+
+.boxes p {
+    font-size: 25px;
+
+    font-weight: bold;
+
+    color: #245b35;
+}
+
+
+/* FORM */
+
+.form-box {
+    border: 1px solid #ccc;
+
+    padding: 20px;
+
+    background: #fafafa;
+
+    margin-bottom: 25px;
+}
+
+.form-box label {
+    display: block;
+
+    margin-top: 12px;
+
+    font-weight: bold;
+}
+
+.form-box input,
+.form-box select {
+    width: 100%;
+
+    padding: 9px;
+
+    margin-top: 5px;
+
+    border: 1px solid #aaa;
+}
+
+.form-box button {
+    margin-top: 18px;
+
+    padding: 8px 15px;
+
+    background: #245b35;
+
+    color: white;
+
+    border: none;
+
+    cursor: pointer;
+}
+
+.form-box .gray {
+    background: #666;
+}
+
+
+/* TABLE */
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1px solid #ccc;
+
+    padding: 9px;
+
+    text-align: left;
+}
+
+th {
+    background: #eee;
+}
+
+.edit {
+    background: #356a91;
+
+    color: white;
+
+    border: none;
+
+    padding: 6px 10px;
+
+    cursor: pointer;
+}
+
+.delete {
+    background: #a00000;
+
+    color: white;
+
+    border: none;
+
+    padding: 6px 10px;
+
+    cursor: pointer;
+}
+
+
+/* POPUP */
+
+.popup {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.4);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+.popup-box {
+    width: 350px;
+
+    background: white;
+
+    border: 1px solid #aaa;
+
+    padding: 25px;
+
+    text-align: center;
+}
+
+.popup-box h3 {
+    color: #245b35;
+}
+
+.popup-box button {
+    background: #245b35;
+
+    color: white;
+
+    border: none;
+
+    padding: 8px 25px;
+
+    cursor: pointer;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    header {
+        display: block;
+    }
+
+    nav {
+        display: block;
+    }
+
+    nav button {
+        width: 100%;
+
+        text-align: left;
+    }
+
+    main {
+        padding: 10px;
+    }
+
+    .boxes {
+        display: block;
+    }
+
+    .boxes div {
+        margin-bottom: 10px;
+    }
+
+    table {
+        min-width: 700px;
+    }
+
+    .page {
+        overflow-x: auto;
+    }
+}

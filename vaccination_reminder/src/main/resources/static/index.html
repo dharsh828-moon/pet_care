@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pet Vaccination System</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<!-- ================= LOGIN ================= -->
+
+<div id="loginPage">
+
+    <div class="login-box">
+
+        <h1>Pet Vaccination System</h1>
+
+        <p>Login</p>
+
+        <label>Select Role</label>
+
+        <select id="loginRole">
+            <option value="">-- Select Role --</option>
+            <option value="OWNER">Pet Owner</option>
+            <option value="EMPLOYEE">Hospital Employee</option>
+        </select>
+
+        <button onclick="login()">Login</button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= APPLICATION ================= -->
+
+<div id="app" class="hidden">
+
+    <header>
+
+        <h1>Pet Vaccination System</h1>
+
+        <div>
+            <span id="roleText"></span>
+
+            <button onclick="logout()">Logout</button>
+        </div>
+
+    </header>
+
+
+    <!-- NAVIGATION -->
+
+    <nav id="navigation"></nav>
+
+
+    <main>
+
+        <!-- ================= OWNER DASHBOARD ================= -->
+
+        <section id="ownerDashboard" class="page hidden">
+
+            <h2>Owner Dashboard</h2>
+
+            <p>Welcome to your Pet Vaccination System.</p>
+
+            <div class="boxes">
+
+                <div>
+                    <h3>My Pets</h3>
+                    <p id="myPetCount">0</p>
+                </div>
+
+                <div>
+                    <h3>Vaccinations</h3>
+                    <p id="myVaccinationCount">0</p>
+                </div>
+
+                <div>
+                    <h3>Upcoming</h3>
+                    <p id="myUpcomingCount">0</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= EMPLOYEE DASHBOARD ================= -->
+
+        <section id="employeeDashboard" class="page hidden">
+
+            <h2>Hospital Employee Dashboard</h2>
+
+            <p>Manage the complete pet vaccination system.</p>
+
+            <div class="boxes">
+
+                <div>
+                    <h3>Owners</h3>
+                    <p id="totalOwners">0</p>
+                </div>
+
+                <div>
+                    <h3>Pets</h3>
+                    <p id="totalPets">0</p>
+                </div>
+
+                <div>
+                    <h3>Vaccinations</h3>
+                    <p id="totalVaccinations">0</p>
+                </div>
+
+                <div>
+                    <h3>Upcoming</h3>
+                    <p id="totalUpcoming">0</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= OWNER PETS ================= -->
+
+        <section id="myPetsPage" class="page hidden">
+
+            <h2>My Pets</h2>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Species</th>
+                        <th>Breed</th>
+                        <th>Date of Birth</th>
+                    </tr>
+                </thead>
+
+                <tbody id="myPetsTable"></tbody>
+
+            </table>
+
+        </section>
+
+
+        <!-- ================= OWNER HISTORY ================= -->
+
+        <section id="historyPage" class="page hidden">
+
+            <h2>Vaccination History</h2>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Pet</th>
+                        <th>Vaccine</th>
+                        <th>Vaccination Date</th>
+                        <th>Next Due Date</th>
+                    </tr>
+                </thead>
+
+                <tbody id="historyTable"></tbody>
+
+            </table>
+
+        </section>
+
+
+        <!-- ================= OWNER UPCOMING ================= -->
+
+        <section id="ownerUpcomingPage" class="page hidden">
+
+            <h2>Upcoming Vaccinations</h2>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Pet</th>
+                        <th>Vaccine</th>
+                        <th>Next Due Date</th>
+                    </tr>
+                </thead>
+
+                <tbody id="ownerUpcomingTable"></tbody>
+
+            </table>
+
+        </section>
+
+
+        <!-- ================= EMPLOYEE OWNERS ================= -->
+
+        <section id="ownersPage" class="page hidden">
+
+            <h2>Owners</h2>
+
+            <div class="form-box">
+
+                <h3>Add / Update Owner</h3>
+
+                <input type="hidden" id="ownerId">
+
+                <label>Name</label>
+                <input type="text" id="ownerName">
+
+                <label>Email</label>
+                <input type="email" id="ownerEmail">
+
+                <label>Phone</label>
+                <input type="text" id="ownerPhone">
+
+                <button onclick="saveOwner()">Save</button>
+
+                <button class="gray" onclick="clearOwnerForm()">
+                    Clear
+                </button>
+
+            </div>
+
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="ownerTable"></tbody>
+
+            </table>
+
+        </section>
+
+
+        <!-- ================= EMPLOYEE PETS ================= -->
+
+        <section id="petsPage" class="page hidden">
+
+            <h2>Pets</h2>
+
+            <div class="form-box">
+
+                <h3>Add / Update Pet</h3>
+
+                <input type="hidden" id="petId">
+
+                <label>Name</label>
+                <input type="text" id="petName">
+
+                <label>Species</label>
+                <input type="text" id="petSpecies">
+
+                <label>Breed</label>
+                <input type="text" id="petBreed">
+
+                <label>Date of Birth</label>
+                <input type="date" id="petDob">
+
+                <label>Owner</label>
+
+                <select id="petOwner">
+                    <option value="">Select Owner</option>
+                </select>
+
+                <button onclick="savePet()">Save</button>
+
+                <button class="gray" onclick="clearPetForm()">
+                    Clear
+                </button>
+
+            </div>
+
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Species</th>
+                        <th>Breed</th>
+                        <th>Date of Birth</th>
+                        <th>Owner</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="petTable"></tbody>
+
+            </table>
+
+        </section>
+
+
+        <!-- ================= VACCINE TYPES ================= -->
+
+        <section id="vaccinesPage" class="page hidden">
+
+            <h2>Vaccine Types</h2>
+
+            <div class="form-box">
+
+                <h3>Add / Update Vaccine</h3>
+
+                <input type="hidden" id="vaccineId">
+
+                <label>Name</label>
+                <input type="text" id="vaccineName">
+
+                <label>Description</label>
+                <input type="text" id="vaccineDescription">
+
+                <button onclick="saveVaccine()">Save</button>
+
+                <button class="gray" onclick="clearVaccineForm()">
+                    Clear
+                </button>
+
+            </div>
+
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="vaccineTable"></tbody>
+
+            </table>
+
+        </section>
+
+
+        <!-- ================= VACCINATIONS ================= -->
+
+        <section id="vaccinationsPage" class="page hidden">
+
+            <h2>Vaccinations</h2>
+
+            <div class="form-box">
+
+                <h3>Add / Update Vaccination</h3>
+
+                <input type="hidden" id="vaccinationId">
+
+                <label>Pet</label>
+
+                <select id="vaccinationPet">
+                    <option value="">Select Pet</option>
+                </select>
+
+
+                <label>Vaccine</label>
+
+                <select id="vaccinationVaccine">
+                    <option value="">Select Vaccine</option>
+                </select>
+
+
+                <label>Vaccination Date</label>
+
+                <input type="date" id="vaccinationDate">
+
+
+                <label>Next Due Date</label>
+
+                <input type="date" id="nextDueDate">
+
+
+                <button onclick="saveVaccination()">
+                    Save
+                </button>
+
+                <button class="gray" onclick="clearVaccinationForm()">
+                    Clear
+                </button>
+
+            </div>
+
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Pet</th>
+                        <th>Vaccine</th>
+                        <th>Vaccination Date</th>
+                        <th>Next Due Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="vaccinationTable"></tbody>
+
+            </table>
+
+        </section>
+
+
+        <!-- ================= EMPLOYEE UPCOMING ================= -->
+
+        <section id="employeeUpcomingPage" class="page hidden">
+
+            <h2>Upcoming Vaccinations</h2>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Pet</th>
+                        <th>Owner</th>
+                        <th>Vaccine</th>
+                        <th>Next Due Date</th>
+                    </tr>
+                </thead>
+
+                <tbody id="employeeUpcomingTable"></tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- ================= POPUP ================= -->
+
+<div id="popup" class="popup hidden">
+
+    <div class="popup-box">
+
+        <h3 id="popupTitle">Message</h3>
+
+        <p id="popupMessage"></p>
+
+        <button onclick="closePopup()">OK</button>
+
+    </div>
+
+</div>
+
+
+<script src="/js/script.js"></script>
+
+</body>
+</html>
